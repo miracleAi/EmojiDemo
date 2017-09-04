@@ -9,7 +9,6 @@ import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Attributes;
 
 /**
  * Created by zhulinping on 2017/9/1.

@@ -2,5 +2,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <include layout="@layout/ic_spitview_horizontal" />
 
+    <com.example.zhulinping.emojidemo.emohiview.EmojiShowPageView
+        android:id="@+id/view_epv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/view_eiv"
+        android:orientation="vertical" />
+    <com.example.zhulinping.emojidemo.emohiview.EmojiIndicatorView
+        android:id="@+id/view_eiv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/view_spit"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp" />
+    <include
+        android:id="@+id/view_spit"
+        layout="@layout/ic_spitview_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_above="@+id/view_etv" />
+
+    <com.example.zhulinping.emojidemo.emohiview.EmojiToolBarView
+        android:id="@+id/view_etv"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" />
 </LinearLayout>
