@@ -2,6 +2,7 @@ package com.example.zhulinping.emojidemo.emohiview;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,6 +20,7 @@ public abstract  class AutoHeightLayout extends SoftKeyboardSizeWatchLayout impl
 
     public AutoHeightLayout(Context context, AttributeSet arrs) {
         super(context,arrs);
+        mContext = context;
         mSoftKeyboardHeight = EmojiKeyboardUtils.getDefKeyboardHeight(context);
         addOnResizeListener(this);
     }
@@ -30,17 +32,18 @@ public abstract  class AutoHeightLayout extends SoftKeyboardSizeWatchLayout impl
             throw new IllegalStateException("can host only one direct child");
         }
         super.addView(child, index, params);
-        if(childNum == 0){
-            if(child.getId() < 0){
+        Log.d("zlp","child"+childNum);
+        if (childNum == 0) {
+            if (child.getId() < 0) {
                 child.setId(ID_CHILD);
-                LayoutParams layoutParams = (LayoutParams) child.getLayoutParams();
-                layoutParams.addRule(ALIGN_BOTTOM);
-                child.setLayoutParams(layoutParams);
             }
-        }else if(childNum == 1){
-            LayoutParams layoutParams = (LayoutParams) child.getLayoutParams();
-            layoutParams.addRule(ABOVE,ID_CHILD);
-            child.setLayoutParams(layoutParams);
+            LayoutParams paramsChild = (LayoutParams) child.getLayoutParams();
+            paramsChild.addRule(ALIGN_PARENT_BOTTOM);
+            child.setLayoutParams(paramsChild);
+        } else if (childNum == 1) {
+            LayoutParams paramsChild = (LayoutParams) child.getLayoutParams();
+            paramsChild.addRule(ABOVE, ID_CHILD);
+            child.setLayoutParams(paramsChild);
         }
     }
 

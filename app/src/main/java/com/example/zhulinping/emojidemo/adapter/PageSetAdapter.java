@@ -58,6 +58,16 @@ public class PageSetAdapter extends PagerAdapter {
         }
         return startPosition;
     }
+    public void add(PageSetBean pageSetEntity) {
+        add(mPageSetEntityList.size(), pageSetEntity);
+    }
+
+    public void add(int index, PageSetBean pageSetEntity) {
+        if (pageSetEntity == null) {
+            return;
+        }
+        mPageSetEntityList.add(index, pageSetEntity);
+    }
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         //可以加入不同的itemView

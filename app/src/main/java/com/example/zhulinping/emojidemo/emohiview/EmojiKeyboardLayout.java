@@ -11,8 +11,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.zhulinping.emojidemo.R;
+import com.example.zhulinping.emojidemo.adapter.PageSetAdapter;
 import com.example.zhulinping.emojidemo.data.bean.PageSetBean;
 import com.example.zhulinping.emojidemo.utils.EmojiKeyboardUtils;
+
+import java.util.ArrayList;
 
 /**
  * Created by zhulinping on 2017/9/1.
@@ -30,9 +33,11 @@ public class EmojiKeyboardLayout extends AutoHeightLayout implements View.OnClic
     private ImageView mFaceBtn;
     private FuncLayout mEmojiLayout;
     protected boolean mDispatchKeyEventPreImeLock = false;
-
+    //显示表情的view
     private EmojiShowPageView mPageView;
+    //底部显示表情集图标view
     private EmojiToolBarView mToolBarView;
+    //表情集多页引导indicator
     private EmojiIndicatorView mIndicatorView;
 
 
@@ -67,15 +72,31 @@ public class EmojiKeyboardLayout extends AutoHeightLayout implements View.OnClic
 
     private void initEmojiView() {
         View keybordView = inflateEmojiLayout();
-        mEmojiLayout.addFuncView(FUNC_TYPE_EMOTION, keybordView);
+        //mEmojiLayout.addFuncView(FUNC_TYPE_EMOTION, keybordView);
+        View view = mInflater.inflate(R.layout.test,null);
+        mEmojiLayout.addFuncView(FUNC_TYPE_APPPS, view);
+        mPageView = keybordView.findViewById(R.id.emoji_page_view);
+        mIndicatorView = keybordView.findViewById(R.id.emoji_indicator_view);
+        mToolBarView = keybordView.findViewById(R.id.emoji_toolbar_view);
+    }
+    public void setAdapter(PageSetAdapter pageSetAdapter) {
+        if (pageSetAdapter != null) {
+            ArrayList<PageSetBean> pageSetEntities = pageSetAdapter.getPageSetEntityList();
+            if (pageSetEntities != null) {
+                for (PageSetBean pageSetEntity : pageSetEntities) {
+                    mToolBarView.addToolItemView(pageSetEntity);
+                }
+            }
+        }
+        mPageView.setAdapter(pageSetAdapter);
     }
     //引入整个弹起布局
     private void inflateKeyboard() {
-        mInflater.inflate(R.layout.keyboart_layout, null);
+        mInflater.inflate(R.layout.keyboart_layout, this);
     }
     //返回表情显示布局，添加到弹起布局的功能layout里
     private View inflateEmojiLayout() {
-        return mInflater.inflate(R.layout.emoji_page_layout, null);
+        return mInflater.inflate(R.layout.emoji_layout, null);
     }
 
     @Override
@@ -106,7 +127,7 @@ public class EmojiKeyboardLayout extends AutoHeightLayout implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_face:
-                mEmojiLayout.toggleFuncView(FUNC_TYPE_EMOTION,isSoftKeyboardPop(),mEdtxt);
+                mEmojiLayout.toggleFuncView(FUNC_TYPE_APPPS,isSoftKeyboardPop(),mEdtxt);
                 break;
             case R.id.btn_send:
                 break;
@@ -176,5 +197,9 @@ public class EmojiKeyboardLayout extends AutoHeightLayout implements View.OnClic
     @Override
     public void playBy(int oldPosition, int newPosition, PageSetBean pageSetEntity) {
         mIndicatorView.playBy(oldPosition,newPosition,pageSetEntity);
+    }
+    public EmojiEdittext getEtChat() { return mEdtxt; }
+    public EmojiToolBarView getEmoticonsToolBarView() {
+        return mToolBarView;
     }
 }

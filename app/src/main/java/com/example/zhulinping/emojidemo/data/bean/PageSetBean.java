@@ -55,11 +55,11 @@ public class PageSetBean<T extends PageBean> implements Serializable {
 
 
     public static class Builder<T extends PageBean> {
-        private String emojiSetIcon;
-        private String emojiSetName;
-        private int emojiSetPageCount;
-        private LinkedList<T> emojiPageList;
-        private boolean isShowIndicator;
+        protected String emojiSetIcon;
+        protected String emojiSetName;
+        protected int emojiSetPageCount;
+        protected LinkedList<T> emojiPageList = new LinkedList<>();
+        protected boolean isShowIndicator;
 
         public Builder() {
         }
@@ -88,6 +88,7 @@ public class PageSetBean<T extends PageBean> implements Serializable {
             isShowIndicator = val;
             return this;
         }
+
 
         public PageSetBean build() {
             return new PageSetBean(this);

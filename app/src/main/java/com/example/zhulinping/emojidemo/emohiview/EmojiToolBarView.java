@@ -77,7 +77,7 @@ public class EmojiToolBarView extends RelativeLayout{
     protected View getToolBgBtn(View parentView) {
         return  parentView.findViewById(R.id.iv_icon);
     }
-
+    //添加左边加好图标
     public void addFixedToolItemView(boolean isRight, int rec, final PageSetBean pageSetEntity, OnClickListener onClickListener) {
         View toolBtnView = getCommonItemToolBtn();
         LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
@@ -96,7 +96,7 @@ public class EmojiToolBarView extends RelativeLayout{
         hsv_toolbar.setLayoutParams(hsvParams);
         initItemToolBtn(toolBtnView, rec, pageSetEntity, onClickListener);
     }
-
+    //添加表情集item
     public void addToolItemView(PageSetBean pageSetEntity) {
         addToolItemView(0, pageSetEntity, null);
     }
@@ -111,7 +111,7 @@ public class EmojiToolBarView extends RelativeLayout{
         ly_tool.addView(toolBtnView);
         mToolBtnList.add(getToolBgBtn(toolBtnView));
     }
-
+    //外部调用，选中某一表情集item
     public void setToolBtnSelect(String uuid) {
         if (TextUtils.isEmpty(uuid)) {
             return;

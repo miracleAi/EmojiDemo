@@ -5,13 +5,13 @@
     <include layout="@layout/ic_spitview_horizontal" />
 
     <com.example.zhulinping.emojidemo.emohiview.EmojiShowPageView
-        android:id="@+id/view_epv"
+        android:id="@+id/emoji_page_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/view_eiv"
         android:orientation="vertical" />
     <com.example.zhulinping.emojidemo.emohiview.EmojiIndicatorView
-        android:id="@+id/view_eiv"
+        android:id="@+id/emoji_indicator_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/view_spit"
@@ -26,7 +26,7 @@
         android:layout_above="@+id/view_etv" />
 
     <com.example.zhulinping.emojidemo.emohiview.EmojiToolBarView
-        android:id="@+id/view_etv"
+        android:id="@+id/emoji_toolbar_view"
         android:layout_width="match_parent"
         android:layout_height="32dp"
         android:layout_alignParentBottom="true"
