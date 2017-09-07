@@ -76,7 +76,7 @@ public abstract  class AutoHeightLayout extends SoftKeyboardSizeWatchLayout impl
         mConfigurationChangedFlag = true;
         mScreenHeight = 0;
     }
-
+    //键盘弹出的时候 表情键盘view不被顶上去的处理
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         if(mConfigurationChangedFlag){

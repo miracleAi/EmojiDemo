@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include layout="@layout/ic_spitview_horizontal" />
@@ -8,7 +8,7 @@
         android:id="@+id/emoji_page_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/view_eiv"
+        android:layout_above="@+id/emoji_indicator_view"
         android:orientation="vertical" />
     <com.example.zhulinping.emojidemo.emohiview.EmojiIndicatorView
         android:id="@+id/emoji_indicator_view"
@@ -23,7 +23,7 @@
         layout="@layout/ic_spitview_horizontal"
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_above="@+id/view_etv" />
+        android:layout_above="@+id/emoji_toolbar_view" />
 
     <com.example.zhulinping.emojidemo.emohiview.EmojiToolBarView
         android:id="@+id/emoji_toolbar_view"
@@ -31,4 +31,4 @@
         android:layout_height="32dp"
         android:layout_alignParentBottom="true"
         android:orientation="vertical" />
-</LinearLayout>
+</RelativeLayout>

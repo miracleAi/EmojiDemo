@@ -53,7 +53,7 @@ public class EmojiKeyboardLayout extends AutoHeightLayout implements View.OnClic
         mSendBtn = findViewById(R.id.btn_send);
         mEdtxt = findViewById(R.id.et_chat);
         mFaceBtn = findViewById(R.id.btn_face);
-        mEmojiLayout = findViewById(R.id.emoji_page_layout);
+        mEmojiLayout = findViewById(R.id.emoji_page_fun_layout);
 
         mSendBtn.setOnClickListener(this);
         mFaceBtn.setOnClickListener(this);
@@ -72,12 +72,16 @@ public class EmojiKeyboardLayout extends AutoHeightLayout implements View.OnClic
 
     private void initEmojiView() {
         View keybordView = inflateEmojiLayout();
-        //mEmojiLayout.addFuncView(FUNC_TYPE_EMOTION, keybordView);
+        mEmojiLayout.addFuncView(FUNC_TYPE_EMOTION, keybordView);
         View view = mInflater.inflate(R.layout.test,null);
-        mEmojiLayout.addFuncView(FUNC_TYPE_APPPS, view);
+        //mEmojiLayout.addFuncView(FUNC_TYPE_APPPS, view);
         mPageView = keybordView.findViewById(R.id.emoji_page_view);
         mIndicatorView = keybordView.findViewById(R.id.emoji_indicator_view);
         mToolBarView = keybordView.findViewById(R.id.emoji_toolbar_view);
+
+        mPageView.setOnIndicatorListener(this);
+        mToolBarView.setOnToolBarItemClickListener(this);
+        mEmojiLayout.setOnFuncChangeListener(this);
     }
     public void setAdapter(PageSetAdapter pageSetAdapter) {
         if (pageSetAdapter != null) {
@@ -127,11 +131,12 @@ public class EmojiKeyboardLayout extends AutoHeightLayout implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_face:
-                mEmojiLayout.toggleFuncView(FUNC_TYPE_APPPS,isSoftKeyboardPop(),mEdtxt);
+                mEmojiLayout.toggleFuncView(FUNC_TYPE_EMOTION,isSoftKeyboardPop(),mEdtxt);
                 break;
             case R.id.btn_send:
                 break;
         }
+
 
     }
     private void reset() {
