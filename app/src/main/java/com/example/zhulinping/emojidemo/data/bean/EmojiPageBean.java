@@ -1,5 +1,6 @@
 package com.example.zhulinping.emojidemo.data.bean;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 

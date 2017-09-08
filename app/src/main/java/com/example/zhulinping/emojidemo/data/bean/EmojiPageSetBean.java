@@ -1,5 +1,7 @@
 package com.example.zhulinping.emojidemo.data.bean;
 
+import android.util.Log;
+
 import com.example.zhulinping.emojidemo.interfaces.PageViewInstantiateListener;
 
 import java.util.ArrayList;

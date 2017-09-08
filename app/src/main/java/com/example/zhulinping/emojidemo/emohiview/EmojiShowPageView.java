@@ -20,6 +20,7 @@ public class EmojiShowPageView extends ViewPager {
     }
 
     public void setAdapter(PageSetAdapter adapter) {
+        super.setAdapter(adapter);
         this.mPageSetAdapter = adapter;
         setOnPageChangeListener(new OnPageChangeListener() {
             @Override

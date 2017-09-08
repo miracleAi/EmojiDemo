@@ -36,7 +36,6 @@ public abstract  class AutoHeightLayout extends SoftKeyboardSizeWatchLayout impl
             throw new IllegalStateException("can host only one direct child");
         }
         super.addView(child, index, params);
-        Log.d("zlp","child"+childNum);
         if (childNum == 0) {
             if (child.getId() < 0) {
                 child.setId(ID_CHILD);

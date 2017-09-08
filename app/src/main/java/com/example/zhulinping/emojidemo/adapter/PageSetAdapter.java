@@ -2,6 +2,7 @@ package com.example.zhulinping.emojidemo.adapter;
 
 import android.support.v4.view.PagerAdapter;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -81,7 +82,6 @@ public class PageSetAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        super.destroyItem(container, position, object);
         container.removeView((View) object);
     }
 

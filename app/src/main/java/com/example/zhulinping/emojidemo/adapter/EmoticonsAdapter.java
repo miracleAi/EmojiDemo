@@ -1,6 +1,7 @@
 package com.example.zhulinping.emojidemo.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -106,7 +107,7 @@ public class EmoticonsAdapter<T> extends BaseAdapter {
     }
 
     protected void updateUI(ViewHolder viewHolder, ViewGroup parent) {
-        if(mDefalutItemHeight != mItemHeight){
+        if (mDefalutItemHeight != mItemHeight) {
             viewHolder.iv_emoticon.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, mItemHeight));
         }
         mItemHeightMax = this.mItemHeightMax != 0 ? this.mItemHeightMax : (int) (mItemHeight * mItemHeightMaxRatio);

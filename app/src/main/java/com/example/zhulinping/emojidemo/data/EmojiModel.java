@@ -1,6 +1,7 @@
 package com.example.zhulinping.emojidemo.data;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -24,6 +25,7 @@ import com.example.zhulinping.emojidemo.utils.imageloader.ImageBase;
 import com.example.zhulinping.emojidemo.utils.imageloader.ImageLoader;
 
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -117,6 +119,7 @@ public class EmojiModel {
                     pageView.setNumColumns(pageEntity.getRow());
                     pageEntity.setRootView(pageView);
                     try {
+                        Log.d("zlp", "create adapter");
                         EmoticonsAdapter adapter = (EmoticonsAdapter) newInstance(_class, container.getContext(), pageEntity, onEmoticonClickListener);
                         if (emoticonDisplayListener != null) {
                             adapter.setOnDisPlayListener(emoticonDisplayListener);
@@ -166,5 +169,10 @@ public class EmojiModel {
     @SuppressWarnings("unchecked")
     public static Object newInstance(Class _Class, Object... args) throws Exception {
         return newInstance(_Class, 0, args);
+    }
+    @SuppressWarnings("unchecked")
+    public static Object newInstance(Class _Class, int constructorIndex, Object... args) throws Exception {
+        Constructor cons = _Class.getConstructors()[constructorIndex];
+        return cons.newInstance(args);
     }
 }
