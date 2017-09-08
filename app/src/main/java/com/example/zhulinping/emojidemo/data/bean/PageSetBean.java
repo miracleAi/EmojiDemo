@@ -59,7 +59,7 @@ public class PageSetBean<T extends PageBean> implements Serializable {
         protected String emojiSetName;
         protected int emojiSetPageCount;
         protected LinkedList<T> emojiPageList = new LinkedList<>();
-        protected boolean isShowIndicator;
+        protected boolean isShowIndicator = true;
 
         public Builder() {
         }

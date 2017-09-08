@@ -3,6 +3,7 @@ package com.example.zhulinping.emojidemo.emohiview;
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import com.example.zhulinping.emojidemo.adapter.PageSetAdapter;
 import com.example.zhulinping.emojidemo.data.bean.PageSetBean;
@@ -39,6 +40,13 @@ public class EmojiShowPageView extends ViewPager {
 
             }
         });
+        if (mOnEmoticonsPageViewListener == null
+                || mPageSetAdapter.getPageSetEntityList().isEmpty()) {
+            return;
+        }
+        PageSetBean pageSetEntity = mPageSetAdapter.getPageSetEntityList().get(0);
+        mOnEmoticonsPageViewListener.playTo(0, pageSetEntity);
+        mOnEmoticonsPageViewListener.emoticonSetChanged(pageSetEntity);
     }
     //切换表情集toolbar时调用
     public void setCurrentPageSet(PageSetBean pageSetEntity) {
@@ -57,7 +65,7 @@ public class EmojiShowPageView extends ViewPager {
             int size = bean.getEmojiSetPageCount();
             //position指向页是当前访问表情集中页面，否则lastEnd指向上一数据集末尾，size为新表情集长度
             if (lastEnd + size > position) {
-                if (mCurrentPagePosition - lastEnd > size) {
+                if (mCurrentPagePosition - lastEnd >= size) {
                     //上一表情集
                     if (mOnEmoticonsPageViewListener != null) {
                         mOnEmoticonsPageViewListener.playTo(position - lastEnd, bean);
@@ -73,6 +81,7 @@ public class EmojiShowPageView extends ViewPager {
                         mOnEmoticonsPageViewListener.playBy(mCurrentPagePosition - lastEnd,position - lastEnd,bean);
                     }
                 }
+                return;
             }
             lastEnd = lastEnd + size;
         }
