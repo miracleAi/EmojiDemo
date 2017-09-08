@@ -1,10 +1,14 @@
 package com.example.zhulinping.emojidemo.utils;
 
+import android.content.Context;
 import android.text.TextUtils;
 
 import com.example.zhulinping.emojidemo.data.bean.EmoticonEntity;
 import com.example.zhulinping.emojidemo.utils.imageloader.ImageBase;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -52,6 +56,22 @@ public class EmojiParse {
             }
             return emojis;
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static ArrayList<EmoticonEntity> parseKaomojiData(Context context) {
+        ArrayList<EmoticonEntity> textEmotionArray = new ArrayList<>();
+        try {
+            InputStreamReader inputStreamReader = new InputStreamReader(context.getAssets().open("kaomoji"));
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                EmoticonEntity bean = new EmoticonEntity(line.trim());
+                textEmotionArray.add(bean);
+            }
+            return textEmotionArray;
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return null;

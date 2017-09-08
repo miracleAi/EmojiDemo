@@ -45,7 +45,7 @@ public class EmojiPageSetBean<T> extends PageSetBean<EmojiPageBean> {
     public static class Builder<T> extends PageSetBean.Builder {
         private int mLine;
         private int mRow;
-        private EmojiPageBean.DelBtnStatus mDelBtnStatus;
+        private EmojiPageBean.DelBtnStatus mDelBtnStatus = EmojiPageBean.DelBtnStatus.GONE;
         private String emojiSetId;
         private ArrayList<T> mEmoticonList;
         protected PageViewInstantiateListener pageViewInstantiateListener;

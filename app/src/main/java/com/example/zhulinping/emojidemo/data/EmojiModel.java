@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.example.zhulinping.emojidemo.R;
 import com.example.zhulinping.emojidemo.adapter.EmoticonsAdapter;
 import com.example.zhulinping.emojidemo.adapter.PageSetAdapter;
+import com.example.zhulinping.emojidemo.adapter.TextEmoticonsAdapter;
 import com.example.zhulinping.emojidemo.data.bean.EmojiBean;
 import com.example.zhulinping.emojidemo.data.bean.EmojiPageBean;
 import com.example.zhulinping.emojidemo.data.bean.EmojiPageSetBean;
@@ -39,13 +40,14 @@ public class EmojiModel {
         emojiEdt.addEmoticonFilter(new EmotionFilter());
     }
     public static PageSetAdapter mPageSetAdpter;
-    public static PageSetAdapter initPageSetAdapter(EmoticonClickListener listener){
+    public static PageSetAdapter initPageSetAdapter(Context context,EmoticonClickListener listener){
         if(mPageSetAdpter != null){
             return mPageSetAdpter;
         }
         mPageSetAdpter = new PageSetAdapter();
         addEmotionSet(mPageSetAdpter,listener);
         addXhsPageSetEntity(mPageSetAdpter,listener);
+        addKaomojiPageSetEntity(mPageSetAdpter,context,listener);
         return mPageSetAdpter;
     }
     //加入emoji表情
@@ -106,10 +108,32 @@ public class EmojiModel {
                 .build();
         pageSetAdapter.add(xhsPageSetEntity);
     }
-
+    /**
+     * 插入颜文字表情集
+     *
+     * @param pageSetAdapter
+     * @param context
+     * @param emoticonClickListener
+     */
+    public static void addKaomojiPageSetEntity(PageSetAdapter pageSetAdapter, Context context, EmoticonClickListener emoticonClickListener) {
+        EmojiPageSetBean kaomojiPageSetEntity
+                = new EmojiPageSetBean.Builder()
+                .mLine(3)
+                .mRow(5)
+                .mEmoticonList(EmojiParse.parseKaomojiData(context))
+                .setIPageViewInstantiateItem(getEmoticonPageViewInstantiateItem(TextEmoticonsAdapter.class, emoticonClickListener))
+                .emojiSetIcon(ImageBase.Scheme.DRAWABLE.toUri("icon_kaomoji"))
+                .mDelBtnStatus(EmojiPageBean.DelBtnStatus.LAST)
+                .build();
+        pageSetAdapter.add(kaomojiPageSetEntity);
+    }
     public static PageViewInstantiateListener<EmojiPageBean> getDefaultEmoticonPageViewInstantiateItem(final EmoticonDisplayListener<Object> emoticonDisplayListener) {
         return getEmoticonPageViewInstantiateItem(EmoticonsAdapter.class, null, emoticonDisplayListener);
     }
+    public static PageViewInstantiateListener<EmojiPageBean> getEmoticonPageViewInstantiateItem(final Class _class, EmoticonClickListener onEmoticonClickListener) {
+        return getEmoticonPageViewInstantiateItem(_class, onEmoticonClickListener, null);
+    }
+
     public static PageViewInstantiateListener<EmojiPageBean> getEmoticonPageViewInstantiateItem(final Class _class, final EmoticonClickListener onEmoticonClickListener, final EmoticonDisplayListener<Object> emoticonDisplayListener) {
         return new PageViewInstantiateListener<EmojiPageBean>() {
             @Override

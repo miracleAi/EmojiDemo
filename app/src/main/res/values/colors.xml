@@ -16,5 +16,6 @@
     <color name="base_middle_gray">#f3f3f3</color>
     <color name="base_middle_gray_light">#f8f8f8</color>
 
-    <color name="qq_bg">#ecedf1</color>
+    <color name="black">#000000</color>
+
 </resources>

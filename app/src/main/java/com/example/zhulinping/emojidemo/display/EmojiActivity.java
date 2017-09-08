@@ -31,7 +31,7 @@ public class EmojiActivity extends AppCompatActivity implements EmoticonClickLis
 
     private void initView() {
         EmojiModel.init(ekBar.getEtChat());
-        ekBar.setAdapter(EmojiModel.initPageSetAdapter(this));
+        ekBar.setAdapter(EmojiModel.initPageSetAdapter(this,this));
         ekBar.getEmoticonsToolBarView().addFixedToolItemView(false, R.mipmap.icon_add, null, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
