@@ -11,6 +11,7 @@ import com.example.zhulinping.emojidemo.data.bean.EmojiBean;
 import com.example.zhulinping.emojidemo.data.bean.EmojiPageBean;
 import com.example.zhulinping.emojidemo.data.bean.EmoticonEntity;
 import com.example.zhulinping.emojidemo.interfaces.EmoticonClickListener;
+import com.example.zhulinping.emojidemo.utils.Constants;
 
 public class TextEmoticonsAdapter extends EmoticonsAdapter<EmoticonEntity> {
 
@@ -48,7 +49,7 @@ public class TextEmoticonsAdapter extends EmoticonsAdapter<EmoticonEntity> {
             @Override
             public void onClick(View v) {
                 if (mOnEmoticonClickListener != null) {
-                    mOnEmoticonClickListener.onEmoticonClick(emoticonEntity, 1, isDelBtn);
+                    mOnEmoticonClickListener.onEmoticonClick(emoticonEntity, Constants.EMOTICON_CLICK_TEXT, isDelBtn);
                 }
             }
         });

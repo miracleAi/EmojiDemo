@@ -2,14 +2,19 @@ package com.example.zhulinping.emojidemo.display;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.zhulinping.emojidemo.R;
 import com.example.zhulinping.emojidemo.data.EmojiModel;
+import com.example.zhulinping.emojidemo.data.bean.EmojiBean;
+import com.example.zhulinping.emojidemo.data.bean.EmoticonEntity;
 import com.example.zhulinping.emojidemo.emohiview.EmojiKeyboardLayout;
 import com.example.zhulinping.emojidemo.interfaces.EmoticonClickListener;
+import com.example.zhulinping.emojidemo.utils.Constants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,7 +36,7 @@ public class EmojiActivity extends AppCompatActivity implements EmoticonClickLis
 
     private void initView() {
         EmojiModel.init(ekBar.getEtChat());
-        ekBar.setAdapter(EmojiModel.initPageSetAdapter(this,this));
+        ekBar.setAdapter(EmojiModel.initPageSetAdapter(this, this));
         ekBar.getEmoticonsToolBarView().addFixedToolItemView(false, R.mipmap.icon_add, null, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +53,25 @@ public class EmojiActivity extends AppCompatActivity implements EmoticonClickLis
 
     @Override
     public void onEmoticonClick(Object o, int actionType, boolean isDelBtn) {
+        if (isDelBtn) {
+            EmojiModel.delClick(ekBar.getEtChat());
+        } else {
+            if (o == null) {
+                return;
+            }
+            String content = null;
+            if (o instanceof EmojiBean) {
+                content = ((EmojiBean) o).emoji;
+            } else if (o instanceof EmoticonEntity) {
+                content = ((EmoticonEntity) o).getContent();
+            }
 
+            if (TextUtils.isEmpty(content)) {
+                return;
+            }
+            int index = ekBar.getEtChat().getSelectionStart();
+            Editable editable = ekBar.getEtChat().getText();
+            editable.insert(index, content);
+        }
     }
 }

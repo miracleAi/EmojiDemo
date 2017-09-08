@@ -34,7 +34,15 @@ public abstract class BaseEmojiFilter {
 
         return null;
     }
-
+    public void clearSpan(Spannable spannable, int start, int end) {
+        if (start == end) {
+            return;
+        }
+        EmojiSpan[] oldSpans = spannable.getSpans(start, end, EmojiSpan.class);
+        for (int i = 0; i < oldSpans.length; i++) {
+            spannable.removeSpan(oldSpans[i]);
+        }
+    }
     public static Drawable getDrawable(Context context, String emojiName) {
         if (TextUtils.isEmpty(emojiName)) {
             return null;
@@ -65,15 +73,6 @@ public abstract class BaseEmojiFilter {
         } catch (Exception var4) {
             var4.printStackTrace();
             return null;
-        }
-    }
-    public void clearSpan(Spannable spannable, int start, int end) {
-        if (start == end) {
-            return;
-        }
-        EmojiSpan[] oldSpans = spannable.getSpans(start, end, EmojiSpan.class);
-        for (int i = 0; i < oldSpans.length; i++) {
-            spannable.removeSpan(oldSpans[i]);
         }
     }
 }

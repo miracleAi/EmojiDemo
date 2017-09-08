@@ -2,8 +2,10 @@ package com.example.zhulinping.emojidemo.data;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.example.zhulinping.emojidemo.R;
 import com.example.zhulinping.emojidemo.adapter.EmoticonsAdapter;
@@ -36,8 +38,8 @@ import java.util.Collections;
 
 public class EmojiModel {
     public static void  init(EmojiEdittext emojiEdt) {
-        emojiEdt.addEmoticonFilter(new CustomEmojiFilter());
         emojiEdt.addEmoticonFilter(new EmotionFilter());
+        emojiEdt.addEmoticonFilter(new CustomEmojiFilter());
     }
     public static PageSetAdapter mPageSetAdpter;
     public static PageSetAdapter initPageSetAdapter(Context context,EmoticonClickListener listener){
@@ -143,7 +145,6 @@ public class EmojiModel {
                     pageView.setNumColumns(pageEntity.getRow());
                     pageEntity.setRootView(pageView);
                     try {
-                        Log.d("zlp", "create adapter");
                         EmoticonsAdapter adapter = (EmoticonsAdapter) newInstance(_class, container.getContext(), pageEntity, onEmoticonClickListener);
                         if (emoticonDisplayListener != null) {
                             adapter.setOnDisPlayListener(emoticonDisplayListener);
@@ -198,5 +199,11 @@ public class EmojiModel {
     public static Object newInstance(Class _Class, int constructorIndex, Object... args) throws Exception {
         Constructor cons = _Class.getConstructors()[constructorIndex];
         return cons.newInstance(args);
+    }
+    public static void delClick(EditText editText) {
+        int action = KeyEvent.ACTION_DOWN;
+        int code = KeyEvent.KEYCODE_DEL;
+        KeyEvent event = new KeyEvent(action, code);
+        editText.onKeyDown(KeyEvent.KEYCODE_DEL, event);
     }
 }

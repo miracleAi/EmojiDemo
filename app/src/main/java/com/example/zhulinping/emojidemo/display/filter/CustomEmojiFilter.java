@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.text.Spannable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.EditText;
 
 import com.example.zhulinping.emojidemo.data.CustemEmojis;
@@ -24,19 +25,18 @@ public class CustomEmojiFilter extends BaseEmojiFilter {
     @Override
     public void filter(EditText editText, CharSequence text, int start, int lengthBefore, int lengthAfter) {
         emoticonSize = emoticonSize == -1 ? EmojiKeyboardUtils.getFontHeight(editText) : emoticonSize;
-        clearSpan(editText.getText(), start, text.toString().length());
-        Matcher macher = BIG_RANGE.matcher(text.toString().substring(start, text.toString().length()));
-        if (macher != null) {
-            while (macher.find()) {
-                String key = macher.group();
-                String iconStr = CustemEmojis.sXhsEmoticonHashMap.get(key);
-                if (!TextUtils.isEmpty(iconStr)) {
-                    emoticonDisplay(editText.getContext(), editText.getText(), key, emoticonSize, start + macher.start(), start + macher.end());
+        //clearSpan(editText.getText(), start, text.toString().length());
+        Matcher m = BIG_RANGE.matcher(text.toString().substring(start, text.toString().length()));
+        if (m != null) {
+            while (m.find()) {
+                String key = m.group();
+                String icon = CustemEmojis.sXhsEmoticonHashMap.get(key);
+                if (!TextUtils.isEmpty(icon)) {
+                    emoticonDisplay(editText.getContext(), editText.getText(), icon, emoticonSize, start + m.start(), start + m.end());
                 }
             }
         }
     }
-
     public static void emoticonDisplay(Context context, Spannable spannable, String emoticonName, int fontSize, int start, int end) {
         Drawable drawable = getDrawableFromAssets(context, emoticonName);
         if (drawable != null) {
