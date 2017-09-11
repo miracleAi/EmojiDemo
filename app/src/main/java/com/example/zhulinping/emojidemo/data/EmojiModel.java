@@ -1,7 +1,6 @@
 package com.example.zhulinping.emojidemo.data;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,38 +21,87 @@ import com.example.zhulinping.emojidemo.emohiview.EmojiPageItemView;
 import com.example.zhulinping.emojidemo.interfaces.EmoticonClickListener;
 import com.example.zhulinping.emojidemo.interfaces.EmoticonDisplayListener;
 import com.example.zhulinping.emojidemo.interfaces.PageViewInstantiateListener;
+import com.example.zhulinping.emojidemo.utils.ApusXmlParse;
 import com.example.zhulinping.emojidemo.utils.Constants;
 import com.example.zhulinping.emojidemo.utils.EmojiParse;
 import com.example.zhulinping.emojidemo.utils.imageloader.ImageBase;
 import com.example.zhulinping.emojidemo.utils.imageloader.ImageLoader;
 
 import java.io.IOException;
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by zhulinping on 2017/9/1.
  */
 
 public class EmojiModel {
-    public static void  init(EmojiEdittext emojiEdt) {
-        emojiEdt.addEmoticonFilter(new EmotionFilter());
+    public static int index = -1;
+
+    public static void init(EmojiEdittext emojiEdt) {
+        index = -1;
+       // emojiEdt.addEmoticonFilter(new EmotionFilter());
         emojiEdt.addEmoticonFilter(new CustomEmojiFilter());
     }
-    public static PageSetAdapter mPageSetAdpter;
-    public static PageSetAdapter initPageSetAdapter(Context context,EmoticonClickListener listener){
-        if(mPageSetAdpter != null){
+
+    /*public static PageSetAdapter mPageSetAdpter;
+
+    public static PageSetAdapter initPageSetAdapter(Context context, EmoticonClickListener listener) {
+        if (mPageSetAdpter != null) {
             return mPageSetAdpter;
         }
         mPageSetAdpter = new PageSetAdapter();
-        addEmotionSet(mPageSetAdpter,listener);
-        addXhsPageSetEntity(mPageSetAdpter,listener);
-        addKaomojiPageSetEntity(mPageSetAdpter,context,listener);
+        addEmotionSet(mPageSetAdpter, listener);
+        addXhsPageSetEntity(mPageSetAdpter, listener);
+        addKaomojiPageSetEntity(mPageSetAdpter, context, listener);
         return mPageSetAdpter;
+    }*/
+
+    public static void addEmojiSet(Context context,PageSetAdapter adapter, final EmoticonClickListener listener) {
+        List<EmojiPageSetBean<EmojiBean>> setList = ApusXmlParse.getXmlRecourse(context);
+        if (setList == null || setList.size() == 0) {
+            return;
+        }
+        for (int i = 0; i < setList.size(); i++) {
+            EmojiPageSetBean bean = new EmojiPageSetBean.Builder()
+                    .mLine(3)
+                    .mRow(7)
+                    .mEmoticonList(setList.get(i).getmEmoticonList())
+                    .setIPageViewInstantiateItem(getDefaultEmoticonPageViewInstantiateItem(new EmoticonDisplayListener<Object>() {
+                        @Override
+                        public void onBindView(int position, ViewGroup parent, EmoticonsAdapter.ViewHolder viewHolder, Object o, final boolean isDelBtn) {
+                            final EmojiBean emojiBean = (EmojiBean) o;
+                            if (emojiBean == null && !isDelBtn) {
+                                return;
+                            }
+
+                            viewHolder.ly_root.setBackgroundResource(R.drawable.bg_emoticon);
+                            if (isDelBtn) {
+                                viewHolder.iv_emoticon.setImageResource(R.mipmap.icon_del);
+                            } else {
+                                viewHolder.iv_emoticon.setImageResource(emojiBean.icon);
+                            }
+
+                            viewHolder.rootView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    if (listener != null) {
+                                        listener.onEmoticonClick(emojiBean, Constants.EMOTICON_CLICK_TEXT, isDelBtn);
+                                    }
+                                }
+                            });
+                        }
+                    }))
+                    .mDelBtnStatus(EmojiPageBean.DelBtnStatus.LAST)
+                    .emojiSetIcon(ImageBase.Scheme.ASSETS.toUri("xhsemoji_"+(i+1)+".png"))
+                    .build();
+            adapter.add(bean);
+        }
     }
+
     //加入emoji表情
-    public static void addEmotionSet(PageSetAdapter adapter, final EmoticonClickListener listener){
+    public static void addEmotionSet(PageSetAdapter adapter, final EmoticonClickListener listener) {
         ArrayList<EmojiBean> emojiArray = new ArrayList<>();
         Collections.addAll(emojiArray, DefEmoticons.sEmojiArray);
         EmojiPageSetBean pageSetBean = new EmojiPageSetBean.Builder()
@@ -67,7 +115,6 @@ public class EmojiModel {
                         if (emojiBean == null && !isDelBtn) {
                             return;
                         }
-
                         viewHolder.ly_root.setBackgroundResource(R.drawable.bg_emoticon);
 
                         if (isDelBtn) {
@@ -92,6 +139,7 @@ public class EmojiModel {
         adapter.add(pageSetBean);
 
     }
+
     /**
      * 插入xhs表情集
      *
@@ -110,6 +158,7 @@ public class EmojiModel {
                 .build();
         pageSetAdapter.add(xhsPageSetEntity);
     }
+
     /**
      * 插入颜文字表情集
      *
@@ -129,9 +178,11 @@ public class EmojiModel {
                 .build();
         pageSetAdapter.add(kaomojiPageSetEntity);
     }
+
     public static PageViewInstantiateListener<EmojiPageBean> getDefaultEmoticonPageViewInstantiateItem(final EmoticonDisplayListener<Object> emoticonDisplayListener) {
         return getEmoticonPageViewInstantiateItem(EmoticonsAdapter.class, null, emoticonDisplayListener);
     }
+
     public static PageViewInstantiateListener<EmojiPageBean> getEmoticonPageViewInstantiateItem(final Class _class, EmoticonClickListener onEmoticonClickListener) {
         return getEmoticonPageViewInstantiateItem(_class, onEmoticonClickListener, null);
     }
@@ -145,7 +196,7 @@ public class EmojiModel {
                     pageView.setNumColumns(pageEntity.getRow());
                     pageEntity.setRootView(pageView);
                     try {
-                        EmoticonsAdapter adapter = (EmoticonsAdapter) newInstance(_class, container.getContext(), pageEntity, onEmoticonClickListener);
+                        EmoticonsAdapter adapter = new EmoticonsAdapter(container.getContext(), pageEntity, onEmoticonClickListener);
                         if (emoticonDisplayListener != null) {
                             adapter.setOnDisPlayListener(emoticonDisplayListener);
                         }
@@ -158,6 +209,7 @@ public class EmojiModel {
             }
         };
     }
+
     public static EmoticonDisplayListener<Object> getCommonEmoticonDisplayListener(final EmoticonClickListener onEmoticonClickListener, final int type) {
         return new EmoticonDisplayListener<Object>() {
             @Override
@@ -192,14 +244,17 @@ public class EmojiModel {
     }
 
     @SuppressWarnings("unchecked")
-    public static Object newInstance(Class _Class, Object... args) throws Exception {
-        return newInstance(_Class, 0, args);
+   /* public static Object newInstance(Class _Class, Object... args) throws Exception {
+        index = index + 1;
+        return newInstance(_Class, index, args);
     }
+
     @SuppressWarnings("unchecked")
     public static Object newInstance(Class _Class, int constructorIndex, Object... args) throws Exception {
         Constructor cons = _Class.getConstructors()[constructorIndex];
         return cons.newInstance(args);
-    }
+    }*/
+
     public static void delClick(EditText editText) {
         int action = KeyEvent.ACTION_DOWN;
         int code = KeyEvent.KEYCODE_DEL;

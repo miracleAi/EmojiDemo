@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.zhulinping.emojidemo.R;
+import com.example.zhulinping.emojidemo.data.bean.EmojiBean;
 import com.example.zhulinping.emojidemo.data.bean.EmojiPageBean;
 import com.example.zhulinping.emojidemo.interfaces.EmoticonClickListener;
 import com.example.zhulinping.emojidemo.interfaces.EmoticonDisplayListener;

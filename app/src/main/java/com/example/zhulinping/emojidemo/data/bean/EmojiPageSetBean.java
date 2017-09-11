@@ -17,12 +17,15 @@ public class EmojiPageSetBean<T> extends PageSetBean<EmojiPageBean> {
     EmojiPageBean.DelBtnStatus mDelBtnStatus;
     ArrayList<T> mEmoticonList;
 
-    private EmojiPageSetBean(Builder builder) {
+    public EmojiPageSetBean(Builder builder) {
         super(builder);
         mLine = builder.mLine;
         mRow = builder.mRow;
         mDelBtnStatus = builder.mDelBtnStatus;
         mEmoticonList = builder.mEmoticonList;
+        if(null != builder.emojiSetId && !"".equals(emojiSetId)){
+            emojiSetId = builder.emojiSetId;
+        }
     }
 
     public int getmRow() {

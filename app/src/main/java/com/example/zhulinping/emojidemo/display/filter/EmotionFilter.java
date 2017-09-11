@@ -3,6 +3,7 @@ package com.example.zhulinping.emojidemo.display.filter;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.text.Spannable;
+import android.util.Log;
 import android.widget.EditText;
 
 import com.example.zhulinping.emojidemo.display.span.EmojiSpan;

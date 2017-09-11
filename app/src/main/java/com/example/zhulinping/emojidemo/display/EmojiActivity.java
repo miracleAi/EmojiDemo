@@ -9,11 +9,13 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.zhulinping.emojidemo.R;
+import com.example.zhulinping.emojidemo.adapter.PageSetAdapter;
 import com.example.zhulinping.emojidemo.data.EmojiModel;
 import com.example.zhulinping.emojidemo.data.bean.EmojiBean;
 import com.example.zhulinping.emojidemo.data.bean.EmoticonEntity;
 import com.example.zhulinping.emojidemo.emohiview.EmojiKeyboardLayout;
 import com.example.zhulinping.emojidemo.interfaces.EmoticonClickListener;
+import com.example.zhulinping.emojidemo.utils.ApusXmlParse;
 import com.example.zhulinping.emojidemo.utils.Constants;
 
 import butterknife.BindView;
@@ -36,7 +38,11 @@ public class EmojiActivity extends AppCompatActivity implements EmoticonClickLis
 
     private void initView() {
         EmojiModel.init(ekBar.getEtChat());
-        ekBar.setAdapter(EmojiModel.initPageSetAdapter(this, this));
+        PageSetAdapter pageSetAdapter = new PageSetAdapter();
+        //EmojiModel.addEmotionSet(pageSetAdapter,this);
+        EmojiModel.addEmojiSet(this, pageSetAdapter, this);
+        EmojiModel.addXhsPageSetEntity(pageSetAdapter, this);
+        ekBar.setAdapter(pageSetAdapter);
         ekBar.getEmoticonsToolBarView().addFixedToolItemView(false, R.mipmap.icon_add, null, new View.OnClickListener() {
             @Override
             public void onClick(View v) {

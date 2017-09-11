@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Spannable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.EditText;
 
 import com.example.zhulinping.emojidemo.display.span.EmojiSpan;
@@ -34,6 +35,7 @@ public abstract class BaseEmojiFilter {
 
         return null;
     }
+
     public void clearSpan(Spannable spannable, int start, int end) {
         if (start == end) {
             return;
@@ -43,6 +45,7 @@ public abstract class BaseEmojiFilter {
             spannable.removeSpan(oldSpans[i]);
         }
     }
+
     public static Drawable getDrawable(Context context, String emojiName) {
         if (TextUtils.isEmpty(emojiName)) {
             return null;
@@ -55,7 +58,6 @@ public abstract class BaseEmojiFilter {
         if (resID <= 0) {
             resID = context.getResources().getIdentifier(emojiName, "drawable", context.getPackageName());
         }
-
         try {
             return Build.VERSION.SDK_INT >= 21 ? context.getResources().getDrawable(resID, (Resources.Theme) null) : context.getResources().getDrawable(resID);
         } catch (Exception var4) {
