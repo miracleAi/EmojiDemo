@@ -10,6 +10,7 @@ import com.example.zhulinping.emojidemo.data.EmojiModel;
 import com.example.zhulinping.emojidemo.data.bean.EmojiBean;
 import com.example.zhulinping.emojidemo.data.bean.EmojiPageBean;
 import com.example.zhulinping.emojidemo.data.bean.EmojiPageSetBean;
+import com.example.zhulinping.emojidemo.data.bean.EmoticonEntity;
 import com.example.zhulinping.emojidemo.interfaces.EmoticonClickListener;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -25,21 +26,24 @@ import java.util.List;
  */
 
 public class ApusXmlParse {
-    public static List<EmojiPageSetBean<EmojiBean>> getXmlRecourse(Context context) {
+    public static List<EmojiPageSetBean> getXmlRecourse(Context context) {
         try {
             InputStream inputStream = context.getAssets().open("emoji-categories.xml");
-            return parseXml(context,inputStream);
+            return parseXml(context, inputStream);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public static List<EmojiPageSetBean<EmojiBean>> parseXml(Context context, InputStream in) {
-        List<EmojiPageSetBean<EmojiBean>> setList = new ArrayList<>();
+    public static List<EmojiPageSetBean> parseXml(Context context, InputStream in) {
+        List<EmojiPageSetBean> setList = new ArrayList<>();
         EmojiPageSetBean.Builder pageSetBean = null;
         ArrayList<EmojiBean> emojiList = null;
         EmojiBean emojiBean = null;
+        ArrayList<EmoticonEntity> emotionList = null;
+        EmoticonEntity emoticonEntity = null;
+        String setName = null;
         if (in == null) {
             return null;
         }
@@ -57,21 +61,32 @@ public class ApusXmlParse {
                             break;
                         }
                         if (name.equals("array")) {
-                           emojiList = new ArrayList<>();
                             pageSetBean = new EmojiPageSetBean.Builder();
-                            //pageSetBean.emojiSetId(parser.getAttributeValue(null, "name"));
-                        } else if (name.equals("item")) {
-                            emojiBean = new EmojiBean();
-                            String arraySpec = parser.nextText();
-                            emojiBean.setArraySpec(arraySpec);
-                            String imageName = "emoji"+CodesArrayParser.getLabelRes(arraySpec);
-                            int resID = context.getResources().getIdentifier(imageName, "mipmap", context.getPackageName());
-                            if (resID <= 0) {
-                                resID = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
+                            setName = parser.getAttributeValue(null, "name");
+                            pageSetBean.emojiSetId(setName);
+                            if (setName != null && setName.equals("emoji_emoticons") || setName.startsWith("emoticon")) {
+                                emotionList = new ArrayList<>();
+                            } else {
+                                emojiList = new ArrayList<>();
                             }
-                            emojiBean.setIcon(resID);
-                            emojiBean.setEmoji(CodesArrayParser.parseLabel(arraySpec));
-                            emojiList.add(emojiBean);
+
+                        } else if (name.equals("item")) {
+                            String arraySpec = parser.nextText();
+                            if (setName != null && setName.equals("emoji_emoticons") || setName.startsWith("emoticon")) {
+                                EmoticonEntity entity = new EmoticonEntity(arraySpec);
+                                emotionList.add(entity);
+                            } else {
+                                emojiBean = new EmojiBean();
+                                emojiBean.setArraySpec(arraySpec);
+                                String imageName = "emoji" + CodesArrayParser.getLabelRes(arraySpec);
+                                int resID = context.getResources().getIdentifier(imageName, "mipmap", context.getPackageName());
+                                if (resID <= 0) {
+                                    resID = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
+                                }
+                                emojiBean.setIcon(resID);
+                                emojiBean.setEmoji(CodesArrayParser.parseLabel(arraySpec));
+                                emojiList.add(emojiBean);
+                            }
                         }
                         break;
                     case XmlPullParser.END_TAG:
@@ -80,7 +95,11 @@ public class ApusXmlParse {
                             break;
                         }
                         if (endName.equals("array")) {
-                            pageSetBean.mEmoticonList(emojiList);
+                            if (setName != null && setName.equals("emoji_emoticons") || setName.startsWith("emoticon")) {
+                                pageSetBean.mEmoticonList(emotionList);
+                            } else {
+                                pageSetBean.mEmoticonList(emojiList);
+                            }
                             setList.add(new EmojiPageSetBean(pageSetBean));
                         }
                         break;

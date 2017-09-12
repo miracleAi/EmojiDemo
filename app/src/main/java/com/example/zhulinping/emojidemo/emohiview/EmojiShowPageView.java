@@ -65,6 +65,8 @@ public class EmojiShowPageView extends ViewPager {
             int size = bean.getEmojiSetPageCount();
             //position指向页是当前访问表情集中页面，否则lastEnd指向上一数据集末尾，size为新表情集长度
             if (lastEnd + size > position) {
+                //标记表情集是否变化
+                boolean isEmoticonSetChanged = true;
                 if (mCurrentPagePosition - lastEnd >= size) {
                     //上一表情集
                     if (mOnEmoticonsPageViewListener != null) {
@@ -80,6 +82,10 @@ public class EmojiShowPageView extends ViewPager {
                     if(mOnEmoticonsPageViewListener != null){
                         mOnEmoticonsPageViewListener.playBy(mCurrentPagePosition - lastEnd,position - lastEnd,bean);
                     }
+                    isEmoticonSetChanged = false;
+                }
+                if (isEmoticonSetChanged && mOnEmoticonsPageViewListener != null) {
+                    mOnEmoticonsPageViewListener.emoticonSetChanged(bean);
                 }
                 return;
             }

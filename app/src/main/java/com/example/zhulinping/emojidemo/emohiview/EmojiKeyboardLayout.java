@@ -187,6 +187,7 @@ public class EmojiKeyboardLayout extends AutoHeightLayout implements View.OnClic
     @Override
     public void onToolBarItemClick(PageSetBean pageSetEntity) {
         mPageView.setCurrentPageSet(pageSetEntity);
+        mToolBarView.setToolBtnSelect(pageSetEntity.getEmojiSetId());
     }
 
     @Override

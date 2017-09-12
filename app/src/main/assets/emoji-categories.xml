@@ -1333,4 +1333,113 @@
         <item>1f1f3|1f1e8</item>
         <item>1f1f5|1f1f2</item>
     </array>
+    <array name="emoji_emoticons" format="string">
+        <item>:-)</item>
+        <item>:-(</item>
+        <item>:-D</item>
+        <item>:-P</item>
+        <item>;-)</item>
+        <item>=-O</item>
+        <item>:-*</item>
+        <item>:O</item>
+        <item>B-)</item>
+        <item>:-$</item>
+        <item>:-!</item>
+        <item>:-\(</item>
+        <item>:\'(</item>
+        <item>-)</item>
+        <item>:-C</item>
+        <item>=)</item>
+        <item>:)</item>
+        <item>(:</item>
+        <item>;)</item>
+        <item>:))</item>
+        <item>:^)</item>
+        <item>3:)</item>
+        <item>8-)</item>
+        <item>Σ=)</item>
+        <item>}:)</item>
+        <item>}:-)</item>
+        <item>}:=)</item>
+        <item>:-.)</item>
+        <item>|:-)</item>
+        <item>:\")</item>
+        <item>、@-)</item>
+        <item>0:-)</item>
+        <item>:-></item>
+        <item>;-></item>
+        <item>>-(</item>
+        <item>X(</item>
+        <item>X-(</item>
+    </array>
+    <array name="emoticon_kiss" format="string">
+        <item>≧ω≦</item>
+        <item>⊙ω⊙</item>
+        <item>(* ￣3)</item>
+        <item>(ε￣ *)</item>
+        <item>(*￣3￣)╭</item>
+        <item>(*╯3╰)</item>
+        <item>o(*￣3￣)o</item>
+        <item>(*/ω＼*)</item>
+        <item>(ToT)/~~~</item>
+        <item>(*￣;(￣ *)</item>
+        <item>(っ´Ι`)っ</item>
+        <item>(′▽`〃)</item>
+    </array>
+    <array name="emoticon_happy" format="string">
+        <item>^O^</item>
+        <item>⊙▽⊙</item>
+        <item>o(^▽^)o</item>
+        <item>&lt;(￣︶￣)&gt;</item>
+        <item>(￣︶￣)↗</item>
+        <item>(＾－＾)V</item>
+        <item>o(*￣▽￣*)o</item>
+        <item>(/≧▽≦)/</item>
+        <item>︿(￣︶￣)︿</item>
+        <item>(*^▽^*)</item>
+        <item>(≧∀≦)ゞ</item>
+        <item>*´∀`)´∀`)*</item>
+    </array>
+    <array name="emoticon_cute" format="string">
+        <item>(&gt;▽&lt;)</item>
+        <item>(#`O′)</item>
+        <item>( ╯▽╰)</item>
+        <item>=￣ω￣=</item>
+        <item>ヾ(≧O≦)〃</item>
+        <item>(っ*´Д`)っ</item>
+        <item>ヾ(´∀`o)+</item>
+        <item>o(￣ε￣*)</item>
+        <item>o(*^＠^*)o</item>
+        <item>(≧∇≦)ﾉ</item>
+        <item>n(*≧▽≦*)n</item>
+        <item>（o´・ェ・｀o）</item>
+    </array>
+    <array name="emoticon_surprise" format="string">
+        <item>(。_。)</item>
+        <item>(⊙ˍ⊙)</item>
+        <item>⊙▽⊙</item>
+        <item>_( ﾟДﾟ)ﾉ</item>
+        <item>￣△￣</item>
+        <item>(￣m￣）</item>
+        <item>w(ﾟДﾟ)w</item>
+        <item>Ｏ(≧口≦)Ｏ</item>
+        <item>（*゜ー゜*）</item>
+        <item>(￣△￣；)</item>
+        <item>(○´･д･)ﾉ</item>
+        <item>wow~ ⊙o⊙</item>
+    </array>
+    <array name="emoticon_angry" format="string">
+        <item>(⊙x⊙;)</item>
+        <item>&lt;(－︿－)&gt;</item>
+        <item>￣へ￣</item>
+        <item>o(≧口≦)o</item>
+        <item>(*￣︿￣)</item>
+        <item>&lt;)。(&gt; </item>
+        <item>凸(艹皿艹 )</item>
+        <item>(ﾟДﾟ*)ﾉ</item>
+        <item>(；′⌒`)</item>
+        <item>→)╥﹏╥)</item>
+        <item>（＝。＝）</item>
+        <item>φ(-ω-*)</item>
+    </array>
 </resources>
