@@ -14,6 +14,7 @@ import com.example.zhulinping.emojidemo.data.bean.EmojiBean;
 import com.example.zhulinping.emojidemo.data.bean.EmojiPageBean;
 import com.example.zhulinping.emojidemo.data.bean.EmojiPageSetBean;
 import com.example.zhulinping.emojidemo.data.bean.EmoticonEntity;
+import com.example.zhulinping.emojidemo.display.filter.ApusEmoticonFilter;
 import com.example.zhulinping.emojidemo.display.filter.CustomEmojiFilter;
 import com.example.zhulinping.emojidemo.display.filter.EmotionFilter;
 import com.example.zhulinping.emojidemo.emohiview.EmojiEdittext;
@@ -39,7 +40,8 @@ import java.util.List;
 
 public class EmojiModel {
     public static void init(EmojiEdittext emojiEdt) {
-        // emojiEdt.addEmoticonFilter(new EmotionFilter());
+        emojiEdt.addEmoticonFilter(new ApusEmoticonFilter());
+       // emojiEdt.addEmoticonFilter(new EmotionFilter());
         emojiEdt.addEmoticonFilter(new CustomEmojiFilter());
     }
 

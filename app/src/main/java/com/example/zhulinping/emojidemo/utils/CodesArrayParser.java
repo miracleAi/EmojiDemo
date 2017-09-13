@@ -70,11 +70,16 @@ public final class CodesArrayParser {
     public static String parseLabel(final String codesArraySpec) {
         final String labelSpec = getLabelSpec(codesArraySpec);
         final StringBuilder sb = new StringBuilder();
-        for (final String codeInHex : labelSpec.split(VERTICAL_BAR_STRING)) {
-            final int codePoint = Integer.parseInt(codeInHex, BASE_HEX);
-            sb.appendCodePoint(codePoint);
+        try {
+            for (final String codeInHex : labelSpec.split(VERTICAL_BAR_STRING)) {
+                final int codePoint = Integer.parseInt(codeInHex, BASE_HEX);
+                sb.appendCodePoint(codePoint);
+            }
+            return sb.toString();
+        }catch (Exception e){
+            //catch到不能转换为16进制的异常（即不是表情），返回null
+            return null;
         }
-        return sb.toString();
     }
     //关联图片资源名字
     public static String getLabelRes(final String codesArraySpec) {

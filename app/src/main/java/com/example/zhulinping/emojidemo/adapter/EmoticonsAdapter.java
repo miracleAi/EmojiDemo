@@ -123,26 +123,6 @@ public class EmoticonsAdapter<T> extends BaseAdapter {
         this.mOnDisPlayListener = mOnDisPlayListener;
     }
 
-    public void setItemHeightMaxRatio(double mItemHeightMaxRatio) {
-        this.mItemHeightMaxRatio = mItemHeightMaxRatio;
-    }
-
-    public void setItemHeightMax(int mItemHeightMax) {
-        this.mItemHeightMax = mItemHeightMax;
-    }
-
-    public void setItemHeightMin(int mItemHeightMin) {
-        this.mItemHeightMin = mItemHeightMin;
-    }
-
-    public void setItemHeight(int mItemHeight) {
-        this.mItemHeight = mItemHeight;
-    }
-
-    public void setDelbtnPosition(int mDelbtnPosition) {
-        this.mDelbtnPosition = mDelbtnPosition;
-    }
-
     public static class ViewHolder {
         public View rootView;
         public LinearLayout ly_root;

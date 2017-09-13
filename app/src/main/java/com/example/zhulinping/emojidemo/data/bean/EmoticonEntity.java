@@ -6,17 +6,8 @@ package com.example.zhulinping.emojidemo.data.bean;
 
 public class EmoticonEntity {
 
-    private long mEventType;
     private String mIconUri;
     private String mContent;
-
-    public long getEventType() {
-        return mEventType;
-    }
-
-    public void setEventType(long eventType) {
-        this.mEventType = eventType;
-    }
 
     public String getIconUri() {
         return mIconUri;
@@ -38,12 +29,6 @@ public class EmoticonEntity {
         this.mContent = content;
     }
 
-    public EmoticonEntity(long eventType, String iconUri, String content) {
-        this.mEventType = eventType;
-        this.mIconUri = iconUri;
-        this.mContent = content;
-    }
-
     public EmoticonEntity(String iconUri, String content) {
         this.mIconUri = iconUri;
         this.mContent = content;
@@ -52,7 +37,5 @@ public class EmoticonEntity {
     public EmoticonEntity(String content) {
         this.mContent = content;
     }
-
-    public EmoticonEntity() { }
 }
 

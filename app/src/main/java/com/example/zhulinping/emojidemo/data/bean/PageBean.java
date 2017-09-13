@@ -10,7 +10,7 @@ import com.example.zhulinping.emojidemo.interfaces.PageViewInstantiateListener;
  * Created by zhulinping on 2017/9/1.
  */
 
-public class PageBean<T extends PageBean> implements PageViewInstantiateListener<T>{
+public class PageBean<T extends PageBean>{
     //显示一页表情的view
     protected View mRootView;
 
@@ -32,7 +32,6 @@ public class PageBean<T extends PageBean> implements PageViewInstantiateListener
         this.mRootView = view;
     }
     //为了可以加在不同样式的pageview，直接传入或者动态通过listener调用添加
-    @Override
     public View instantiateItem(ViewGroup container, int position, T pageEntity) {
         if(mPageViewInstantiateListener != null){
             return mPageViewInstantiateListener.instantiateItem(container, position, this);

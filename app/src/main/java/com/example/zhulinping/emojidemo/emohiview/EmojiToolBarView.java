@@ -112,7 +112,7 @@ public class EmojiToolBarView extends RelativeLayout{
         ly_tool.addView(toolBtnView);
         mToolBtnList.add(getToolBgBtn(toolBtnView));
     }
-    //外部调用，选中某一表情集item
+    //选中某一表情集item
     public void setToolBtnSelect(String uuid) {
         if (TextUtils.isEmpty(uuid)) {
             return;

@@ -22,7 +22,7 @@ import java.util.ArrayList;
  */
 
 public class EmojiKeyboardLayout extends AutoHeightLayout implements View.OnClickListener,FuncLayout.OnFuncChangeListener,
-        EmojiEdittext.OnBackKeyClickListener,EmojiToolBarView.OnToolBarItemClickListener,EmojiShowPageView.OnEmoticonsPageViewListener{
+        /*EmojiEdittext.OnBackKeyClickListener,*/EmojiToolBarView.OnToolBarItemClickListener,EmojiShowPageView.OnEmoticonsPageViewListener{
     //弹出view类型为表情键盘
     public static final int FUNC_TYPE_EMOTION = -1;
     //弹出view为应用列表
@@ -158,13 +158,13 @@ public class EmojiKeyboardLayout extends AutoHeightLayout implements View.OnClic
         }
     }
 
-    @Override
+    /*@Override
     public void onBackKeyClick() {
         if (mEmojiLayout.isShown()) {
             mDispatchKeyEventPreImeLock = true;
             reset();
         }
-    }
+    }*/
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {

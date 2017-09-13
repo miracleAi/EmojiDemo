@@ -40,9 +40,7 @@ public class ApusXmlParse {
         List<EmojiPageSetBean> setList = new ArrayList<>();
         EmojiPageSetBean.Builder pageSetBean = null;
         ArrayList<EmojiBean> emojiList = null;
-        EmojiBean emojiBean = null;
         ArrayList<EmoticonEntity> emotionList = null;
-        EmoticonEntity emoticonEntity = null;
         String setName = null;
         if (in == null) {
             return null;
@@ -76,7 +74,7 @@ public class ApusXmlParse {
                                 EmoticonEntity entity = new EmoticonEntity(arraySpec);
                                 emotionList.add(entity);
                             } else {
-                                emojiBean = new EmojiBean();
+                                EmojiBean emojiBean = new EmojiBean();
                                 emojiBean.setArraySpec(arraySpec);
                                 String imageName = "emoji" + CodesArrayParser.getLabelRes(arraySpec);
                                 int resID = context.getResources().getIdentifier(imageName, "mipmap", context.getPackageName());

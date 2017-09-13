@@ -62,13 +62,6 @@ public abstract  class AutoHeightLayout extends SoftKeyboardSizeWatchLayout impl
         }
     }
 
-    public void updateMaxParentHeight(int maxParentHeight) {
-        this.mMaxParentHeight = maxParentHeight;
-        if(maxParentHeightChangeListener != null){
-            maxParentHeightChangeListener.onMaxParentHeightChange(maxParentHeight);
-        }
-    }
-
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -111,14 +104,5 @@ public abstract  class AutoHeightLayout extends SoftKeyboardSizeWatchLayout impl
     @Override
     public void onSoftClose() {
 
-    }
-    private OnMaxParentHeightChangeListener maxParentHeightChangeListener;
-
-    public interface OnMaxParentHeightChangeListener {
-        void onMaxParentHeightChange(int height);
-    }
-
-    public void setOnMaxParentHeightChangeListener(OnMaxParentHeightChangeListener listener) {
-        this.maxParentHeightChangeListener = listener;
     }
 }

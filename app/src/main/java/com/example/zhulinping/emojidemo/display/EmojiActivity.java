@@ -15,8 +15,6 @@ import com.example.zhulinping.emojidemo.data.bean.EmojiBean;
 import com.example.zhulinping.emojidemo.data.bean.EmoticonEntity;
 import com.example.zhulinping.emojidemo.emohiview.EmojiKeyboardLayout;
 import com.example.zhulinping.emojidemo.interfaces.EmoticonClickListener;
-import com.example.zhulinping.emojidemo.utils.ApusXmlParse;
-import com.example.zhulinping.emojidemo.utils.Constants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -67,7 +65,7 @@ public class EmojiActivity extends AppCompatActivity implements EmoticonClickLis
             }
             String content = null;
             if (o instanceof EmojiBean) {
-                content = ((EmojiBean) o).emoji;
+                content = ((EmojiBean) o).arraySpec;
             } else if (o instanceof EmoticonEntity) {
                 content = ((EmoticonEntity) o).getContent();
             }

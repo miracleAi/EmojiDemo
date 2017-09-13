@@ -72,7 +72,7 @@ public class EmojiPageBean<T> extends PageBean<EmojiPageBean>{
 
     public EmojiPageBean() { }
 
-    public View instantiateItem(final ViewGroup container, int position, EmojiPageBean pageEntity) {
+   /* public View instantiateItem(final ViewGroup container, int position, EmojiPageBean pageEntity) {
         if(mPageViewInstantiateListener != null){
             return mPageViewInstantiateListener.instantiateItem(container, position, this);
         }
@@ -82,5 +82,5 @@ public class EmojiPageBean<T> extends PageBean<EmojiPageBean>{
             setRootView(pageView);
         }
         return getRootView();
-    }
+    }*/
 }

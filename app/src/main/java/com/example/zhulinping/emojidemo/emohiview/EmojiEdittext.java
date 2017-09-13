@@ -39,13 +39,13 @@ public class EmojiEdittext extends EditText {
         }
     }
 
-    @Override
+  /*  @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         if (oldh > 0 && onSizeChangedListener != null) {
             onSizeChangedListener.onSizeChanged(w, h, oldw, oldh);
         }
-    }
+    }*/
 
     @Override
     public void setGravity(int gravity) {
@@ -90,19 +90,19 @@ public class EmojiEdittext extends EditText {
         }
     }
 
-    @Override
+   /* @Override
     public boolean dispatchKeyEventPreIme(KeyEvent event) {
         if (onBackKeyClickListener != null) {
             onBackKeyClickListener.onBackKeyClick();
         }
         return super.dispatchKeyEventPreIme(event);
-    }
-
+    }*/
+/*
     public interface OnBackKeyClickListener {
         void onBackKeyClick();
-    }
+    }*/
 
-    OnBackKeyClickListener onBackKeyClickListener;
+   /* OnBackKeyClickListener onBackKeyClickListener;
 
     public void setOnBackKeyClickListener(OnBackKeyClickListener i) {
         onBackKeyClickListener = i;
@@ -116,5 +116,5 @@ public class EmojiEdittext extends EditText {
 
     public void setOnSizeChangedListener(OnSizeChangedListener i) {
         onSizeChangedListener = i;
-    }
+    }*/
 }

@@ -28,7 +28,7 @@
     <com.example.zhulinping.emojidemo.emohiview.EmojiToolBarView
         android:id="@+id/emoji_toolbar_view"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="@dimen/bar_height"
         android:layout_alignParentBottom="true"
         android:orientation="vertical" />
 </RelativeLayout>
