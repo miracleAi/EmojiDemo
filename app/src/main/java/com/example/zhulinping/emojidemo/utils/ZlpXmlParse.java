@@ -25,7 +25,7 @@ import java.util.List;
  * Created by zhulinping on 2017/9/11.
  */
 
-public class ApusXmlParse {
+public class ZlpXmlParse {
     public static List<EmojiPageSetBean> getXmlRecourse(Context context) {
         try {
             InputStream inputStream = context.getAssets().open("emoji-categories.xml");

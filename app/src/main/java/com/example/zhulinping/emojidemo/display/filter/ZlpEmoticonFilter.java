@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  * Created by zhulinping on 2017/9/12.
  */
 
-public class ApusEmoticonFilter extends BaseEmojiFilter{
+public class ZlpEmoticonFilter extends BaseEmojiFilter{
     private static final Pattern EMOJI_RANGE = Pattern.compile("(?:[\uD83C\uDF00-\uD83D\uDDFF]" +
             "|[\uD83E\uDD00-\uD83E\uDDFF]|[\uD83D\uDE00-\uD83D\uDE4F]|[\uD83D\uDE80-\uD83D\uDEFF]" +
             "|[\u2600-\u26FF]\uFE0F?|[\u2700-\u27BF]\uFE0F?|\u24C2\uFE0F?|[\uD83C\uDDE6-\uD83C\uDDFF]{1,2}" +

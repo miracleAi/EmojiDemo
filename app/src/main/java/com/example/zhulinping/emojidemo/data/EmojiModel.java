@@ -14,15 +14,14 @@ import com.example.zhulinping.emojidemo.data.bean.EmojiBean;
 import com.example.zhulinping.emojidemo.data.bean.EmojiPageBean;
 import com.example.zhulinping.emojidemo.data.bean.EmojiPageSetBean;
 import com.example.zhulinping.emojidemo.data.bean.EmoticonEntity;
-import com.example.zhulinping.emojidemo.display.filter.ApusEmoticonFilter;
+import com.example.zhulinping.emojidemo.display.filter.ZlpEmoticonFilter;
 import com.example.zhulinping.emojidemo.display.filter.CustomEmojiFilter;
-import com.example.zhulinping.emojidemo.display.filter.EmotionFilter;
 import com.example.zhulinping.emojidemo.emohiview.EmojiEdittext;
 import com.example.zhulinping.emojidemo.emohiview.EmojiPageItemView;
 import com.example.zhulinping.emojidemo.interfaces.EmoticonClickListener;
 import com.example.zhulinping.emojidemo.interfaces.EmoticonDisplayListener;
 import com.example.zhulinping.emojidemo.interfaces.PageViewInstantiateListener;
-import com.example.zhulinping.emojidemo.utils.ApusXmlParse;
+import com.example.zhulinping.emojidemo.utils.ZlpXmlParse;
 import com.example.zhulinping.emojidemo.utils.Constants;
 import com.example.zhulinping.emojidemo.utils.EmojiParse;
 import com.example.zhulinping.emojidemo.utils.imageloader.ImageBase;
@@ -40,13 +39,13 @@ import java.util.List;
 
 public class EmojiModel {
     public static void init(EmojiEdittext emojiEdt) {
-        emojiEdt.addEmoticonFilter(new ApusEmoticonFilter());
+        emojiEdt.addEmoticonFilter(new ZlpEmoticonFilter());
        // emojiEdt.addEmoticonFilter(new EmotionFilter());
         emojiEdt.addEmoticonFilter(new CustomEmojiFilter());
     }
 
     public static void addEmojiSet(Context context, PageSetAdapter adapter, final EmoticonClickListener listener) {
-        List<EmojiPageSetBean> setList = ApusXmlParse.getXmlRecourse(context);
+        List<EmojiPageSetBean> setList = ZlpXmlParse.getXmlRecourse(context);
         if (setList == null || setList.size() == 0) {
             return;
         }
